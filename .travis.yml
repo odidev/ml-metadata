@@ -1,0 +1,15 @@
+language: python
+matrix:
+    include:
+        - python: '3.8'
+        - python: 3.8
+          arch: arm64
+sudo: false
+# running in the container-based infrastructure without access to sudo
+install:
+    - pip install .
+    - python setup.py install 
+    - python setup.py bdist_wheel
+    - pip install pytest
+script:
+    - python -m pytest
